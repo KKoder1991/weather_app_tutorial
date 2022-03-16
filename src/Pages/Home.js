@@ -27,6 +27,12 @@ function Home() {
         }}
       />
       <button onClick={() => getWeather()}>Search</button>
+      <div className="weather">
+          <h1>City Name</h1>
+          <h1>Temperature</h1>
+          <h1>Description</h1>
+          <h1>Wind</h1>
+      </div>
     </div>
   );
 }
