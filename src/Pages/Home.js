@@ -4,12 +4,9 @@ import { GET_WEATHER_QUERY } from "../graphql/Queries";
 
 function Home() {
   const [citySearched, setCitySearched] = useState("");
-  const [getWeather, { loading, data, error }] = useLazyQuery(
-    GET_WEATHER_QUERY,
-    {
-      variables: { name: citySearched },
-    }
-  );
+  const [getWeather, { data, error }] = useLazyQuery(GET_WEATHER_QUERY, {
+    variables: { name: citySearched },
+  });
 
   if (error) return <h1>Error found</h1>;
   if (data) {
@@ -28,10 +25,14 @@ function Home() {
       />
       <button onClick={() => getWeather()}>Search</button>
       <div className="weather">
-          <h1>City Name</h1>
-          <h1>Temperature</h1>
-          <h1>Description</h1>
-          <h1>Wind</h1>
+        {data && (
+          <>
+            <h1>{data.getCityByName.name}</h1>
+            <h1>Temperature: {data.getCityByName.weather.temperature.actual}</h1>
+            <h1>Description: {data.getCityByName.weather.summary.description}</h1>
+            <h1>Wind Speed: {data.getCityByName.weather.wind.speed}</h1>
+          </>
+        )}
       </div>
     </div>
   );
