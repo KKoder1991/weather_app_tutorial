@@ -1,4 +1,6 @@
 import React from 'react';
+import { useLazyQuery } from "@apollo/client";
+import { GET_WEATHER_QUERY } from "./graphql/Queries";
 
 function Home(){
     return (
